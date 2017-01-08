@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var recordingLable: UILabel!
+    @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var recordAudioButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
     
@@ -20,8 +20,10 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-        print("View will appear called.");
+        super.viewWillAppear(animated)
+        print("View will appear called.")
+        stopRecordingButton.isEnabled = false;
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -29,12 +31,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func recordAudio(_ sender: Any) {
-        recordingLable.text = "Recording in progress."
-        print("Pitch perfect was pressed.");
+        recordingLabel.text = "Recording in progress."
+        stopRecordingButton.isEnabled = true
+        recordAudioButton.isEnabled = false
+        
     }
 
     @IBAction func stopRecordingAudio(_ sender: Any) {
-        print("Stop recording was pressed.");
+        recordAudioButton.isEnabled = true
+        stopRecordingButton.isEnabled = false
+        recordingLabel.text = "Tap to record."
     }
 }
 
